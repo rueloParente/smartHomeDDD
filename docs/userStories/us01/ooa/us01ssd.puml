@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor Admin
+participant System
+
+Admin -> System: I want to configure house
+System --> Admin: What's the house location?
+Admin -> System: location
+System --> Admin: What's the house name?
+Admin -> System: name
+System --> Admin: Confirm house configuration?
+Admin -> System: Yes
+System --> Admin: House configured
+
+
+@enduml

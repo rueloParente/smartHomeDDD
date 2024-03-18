@@ -1,0 +1,52 @@
+@startuml
+!pragma layout smetana
+
+
+
+class Controller {
+  + configureHouseWithLocation()
+  + saveHouseToRepository()
+}
+
+class Assembler {
+  + getAddressFromJson(): Address
+  + getZipCodeFromJson(): ZipCode
+  + getGpsFromJson(): Gps
+  + houseToDTO(House house): HouseDTO
+}
+
+class Service {
+  + configureHouse(LocationDTO location)
+  + saveHouse()
+}
+
+class Factory {
+  + createHouse(Address address, ZipCode zipCode, Gps gps): House
+}
+
+class House {
+  - address
+  - zipCode
+  - gps
+  - id
+}
+
+class HouseRepository {
+  + saveHouse()
+}
+
+class HouseDTO {
+  - address
+  - zipCode
+  - gps
+  - id
+}
+
+Controller --> Service: <<use>>
+Service --> Factory: <<use>>
+Service --> HouseRepository: <<use>>
+Assembler --> HouseDTO: <<creates>>
+Factory --> House: <<creates>>
+Service --> Assembler: <<use>>
+
+@enduml

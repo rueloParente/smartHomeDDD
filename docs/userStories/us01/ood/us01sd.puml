@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant " " as User
+participant ":ConfigureHouse" as Controller
+participant ":HouseService" as Service
+participant ":HouseAssembler" as Assembler
+
+participant ":HouseFactory" as Factory
+participant "house:House" as House
+participant ":HouseRepository" as Repository
+
+User -> Controller: configureHouse(locationData)
+Controller -> Service: getAddress(locationData)
+Service -> Assembler: createAddress(locationData.address)
+Assembler --> Service: address
+Service ->  Assembler: createZipCode(locationData.zipCode)
+Assembler --> Service: zipCode
+Service -> Assembler: createGps(locationData.gps)
+Assembler --> Service: gps
+Service -> Factory: createHouse(address, zipCode, gps)
+create House
+Factory -> House : House(address, zipCode, gps)
+House --> Factory: house
+Factory --> Service: house
+Service --> Assembler: houseToDTO(house)
+Assembler --> Service: houseDTO
+Service --> Controller: houseDTO
+Controller --> User: houseDTO
+
+'Now the house is configured and ready to be saved if confirmed by the user
+User -> Controller: saveHouse(houseDTO
+Controller -> Service: saveHouse(houseDTO)
+Service -> Service: houseDTOToHouse(houseDTO)
+Service -> Repository: saveHouse(house)
+Repository -> Repository: saveHouse(house)
+Repository --> Service: "house saved"
+Service --> Controller: "house saved"
+Controller --> User: "house saved"
+@enduml
