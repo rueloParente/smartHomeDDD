@@ -1,0 +1,30 @@
+@startuml
+!pragma layout smetana
+left to right direction
+
+actor Administrator as Admin
+actor PowerUser as Power
+
+
+rectangle "SmartHome System" {
+usecase "Configure house Location" as UC1
+usecase "Add house to system" as UC2
+usecase "Add Room to House" as UC3
+usecase "Configure added room" as UC4
+usecase "Get list of rooms" as UC5
+usecase "Define sensor type" as UC6
+usecase "Add device to room" as UC7
+}
+Admin --> UC1
+UC1 ..> UC2 : <<includes>>
+Admin --> UC3
+UC3 ..> UC4 : <<includes>>
+Admin --> UC5
+Admin --> UC6
+Power --> UC7
+Admin --> UC7
+
+
+
+
+@enduml
