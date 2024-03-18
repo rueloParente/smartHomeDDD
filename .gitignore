@@ -130,10 +130,5 @@ fabric.properties
 .nfs*
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,linux
-/target/classes/smartHome/domain/valueObject/Address.class
-/target/test-classes/smartHome/domain/valueObject/AddressTest.class
-/target/classes/smartHome/ddd/AggregateRoot.class
-/target/classes/smartHome/ddd/DomainEntity.class
-/target/classes/smartHome/ddd/DomainID.class
-/target/classes/smartHome/ddd/Repository.class
-/target/classes/smartHome/ddd/ValueObject.class
+/target/classes/*
+/target/test-classes/*
